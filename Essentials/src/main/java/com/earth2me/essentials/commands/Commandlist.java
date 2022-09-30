@@ -22,14 +22,15 @@ public class Commandlist extends EssentialsCommand {
         if (sender.isPlayer()) {
             user = ess.getUser(sender.getPlayer());
             showHidden = user.isAuthorized("essentials.list.hidden") || user.canInteractVanished();
-        }
-        sender.sendMessage(PlayerList.listSummary(ess, user, showHidden));
-        final Map<String, List<User>> playerList = PlayerList.getPlayerLists(ess, user, showHidden);
-
-        if (args.length > 0) {
-            sender.sendMessage(PlayerList.listGroupUsers(ess, playerList, args[0].toLowerCase()));
-        } else {
-            sendGroupedList(sender, commandLabel, playerList);
+            
+            sender.sendMessage(PlayerList.listSummary(ess, user, showHidden));
+            final Map<String, List<User>> playerList = PlayerList.getPlayerLists(ess, user, showHidden);
+    
+            if (args.length > 0) {
+                sender.sendMessage(PlayerList.listGroupUsers(ess, playerList, args[0].toLowerCase()));
+            } else {
+                sendGroupedList(sender, commandLabel, playerList);
+            }
         }
     }
 
